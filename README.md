@@ -1,3 +1,5 @@
+![FLM — Fly Language Model. Talk to the fly.](docs/banner.png)
+
 # FLM — Fly Language Model
 
 A frozen language model with a trained readout of the **MaleCNS v1.0 fly connectome**: 166,700 retained nodes and 25,582,938 directed connections.
