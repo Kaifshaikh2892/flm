@@ -1,0 +1,15 @@
+{
+  "dataset_id": "HuggingFaceTB/smoltalk",
+  "revision": "5feaf2fd3ffca7c237fc38d1861bc30365d48ffa",
+  "split": "everyday-conversations/test",
+  "row_indices": [
+    23,
+    98,
+    61,
+    85,
+    59,
+    19,
+    110,
+    43
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "purpose": "Fixed conversational acceptance cases, kept separate from adapter fitting. The greeting case is a known regression, not an unseen benchmark.",
+  "seeds": [42, 123],
+  "cases": [
+    {"id":"greeting-regression","turns":["hi","do you have friends","What could we make together?"],"rubric":"Answers each new question; no repeated greeting or invented personal life."},
+    {"id":"context-memory","turns":["My cactus is named Pickle. It lives on my desk.","What is my cactus called?"],"rubric":"Recalls Pickle on the second turn."},
+    {"id":"creative-followup","turns":["Invent three ridiculous, low-budget inventions for a rainy Saturday.","Make the second idea even weirder."],"rubric":"Three concrete ideas, then revises the second rather than restarting."},
+    {"id":"simple-fact","turns":["Why do shadows get longer near sunset? Explain simply."],"rubric":"Connects low sun angle to longer shadows."},
+    {"id":"microfiction","turns":["Write a two-sentence mystery about a missing strawberry."],"rubric":"Coherent, specific short story; approximately two sentences."},
+    {"id":"rewrite-followup","turns":["Name a robot that keeps pigeons off my balcony.","Less serious. More ridiculous."],"rubric":"Returns a name, then a sillier relevant name."},
+    {"id":"arithmetic","turns":["What is 2 plus 2?"],"rubric":"Answers 4."},
+    {"id":"identity","turns":["Are you actually a living fly?"],"rubric":"Explains it is software without denying the actual graph computation."},
+    {"id":"joke","turns":["Tell me a terrible joke about a toaster."],"rubric":"An on-topic joke rather than a generic greeting or question."},
+    {"id":"format","turns":["Answer with only the word banana."],"rubric":"Only banana, allowing capitalization/punctuation."}
+  ]
+}
